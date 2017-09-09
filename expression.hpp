@@ -52,15 +52,24 @@ namespace QuantLib {
 				const boost::shared_ptr<Expression> second = boost::shared_ptr<Expression>(),
 				const boost::shared_ptr<Expression> third =  boost::shared_ptr<Expression>());
 
+			Expression(const Type                   type,
+				const boost::shared_ptr<Expression> child,
+				const std::string                   first  = std::string(),
+				const std::string                   second = std::string(),
+				const std::string                   third  = std::string(),
+				const std::string                   fourth = std::string(),
+				const std::string                   fifth  = std::string()
+			);
+
 			std::string toString(const size_t level = 0);
 
 			// inspectors
-			inline Type type()         { return type_;  }
-			inline std::string leaf()  { return leaf_;  }
+			inline Type type()                                                  { return type_;   }
+			std::vector< std::string > leafs()                                  { return leafs_;  }
 			inline const std::vector< boost::shared_ptr<Expression> >& childs() { return childs_; };
 		private:
 			Type type_;
-			std::string leaf_;
+			std::vector< std::string > leafs_;
 			std::vector< boost::shared_ptr<Expression> > childs_;
 
 		};
