@@ -45,10 +45,10 @@ ExpressionParser/Debug/
 ExpressionParser/Release/
 
 # Flex/Bison generated files
-Lexer.cpp
-Parser.cpp
-Parser.hpp
-location.hh
-position.hh
-stack.hh
+# Lexer.cpp
+# Parser.cpp
+# Parser.hpp
+# location.hh
+# position.hh
+# stack.hh
  
