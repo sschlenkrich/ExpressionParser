@@ -48,6 +48,9 @@ blank   [ \t]
 "<"              return QuantLib::Scripting::Parser::make_LESS(driver.loc());
 ">"              return QuantLib::Scripting::Parser::make_GREATER(driver.loc());
 
+"&&"             return QuantLib::Scripting::Parser::make_AND(driver.loc());
+"||"             return QuantLib::Scripting::Parser::make_OR(driver.loc());
+
 "-"              return QuantLib::Scripting::Parser::make_MINUS(driver.loc());
 "+"              return QuantLib::Scripting::Parser::make_PLUS(driver.loc());
 "*"              return QuantLib::Scripting::Parser::make_STAR(driver.loc());

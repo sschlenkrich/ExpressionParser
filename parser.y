@@ -61,6 +61,8 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
   NEQUUAL     "!="
   LESSEQ      "<="
   GREATEREQ   ">="
+  AND         "&&"
+  OR          "||"
   LESS        "<"
   GREATER     ">"
   LBRACK      "["
@@ -113,6 +115,10 @@ exp:
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<",$1,$3)); }
 | exp ">" exp
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">",$1,$3)); }
+| exp "&&" exp
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"&&",$1,$3)); }
+| exp "||" exp
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"||",$1,$3)); }
 | "(" exp ")"   { $$ = $2; }
 | IDENTIFIER    { $$ = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,$1)); }
 | NUMBER        { $$ = boost::shared_ptr<Expression>(new Expression(Expression::NUMBER,$1)); }
