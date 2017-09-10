@@ -257,20 +257,21 @@ namespace QuantLib { namespace Scripting {
   {
       switch (that.type_get ())
     {
-      case 31: // assignment
-      case 32: // exp
-      case 33: // function
-      case 34: // funcname
+      case 30: // assignment
+      case 31: // exp
+      case 32: // function
+      case 33: // funcname
         value.move< boost::shared_ptr<Expression> > (that.value);
         break;
 
-      case 21: // "identifier"
-      case 22: // "number"
-      case 23: // "IfThenElse"
-      case 24: // "Min"
-      case 25: // "Max"
-      case 26: // "Pay"
-      case 27: // "Cache"
+      case 19: // "identifier"
+      case 20: // "number"
+      case 21: // "date"
+      case 22: // "IfThenElse"
+      case 23: // "Min"
+      case 24: // "Max"
+      case 25: // "Pay"
+      case 26: // "Cache"
         value.move< std::string > (that.value);
         break;
 
@@ -289,20 +290,21 @@ namespace QuantLib { namespace Scripting {
     state = that.state;
       switch (that.type_get ())
     {
-      case 31: // assignment
-      case 32: // exp
-      case 33: // function
-      case 34: // funcname
+      case 30: // assignment
+      case 31: // exp
+      case 32: // function
+      case 33: // funcname
         value.copy< boost::shared_ptr<Expression> > (that.value);
         break;
 
-      case 21: // "identifier"
-      case 22: // "number"
-      case 23: // "IfThenElse"
-      case 24: // "Min"
-      case 25: // "Max"
-      case 26: // "Pay"
-      case 27: // "Cache"
+      case 19: // "identifier"
+      case 20: // "number"
+      case 21: // "date"
+      case 22: // "IfThenElse"
+      case 23: // "Min"
+      case 24: // "Max"
+      case 25: // "Pay"
+      case 26: // "Cache"
         value.copy< std::string > (that.value);
         break;
 
@@ -342,81 +344,88 @@ namespace QuantLib { namespace Scripting {
         << yysym.location << ": ";
     switch (yytype)
     {
-            case 21: // "identifier"
+            case 19: // "identifier"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
-#line 350 "Parser.cpp" // lalr1.cc:636
+#line 352 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 22: // "number"
+      case 20: // "number"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
-#line 357 "Parser.cpp" // lalr1.cc:636
+#line 359 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 23: // "IfThenElse"
+      case 21: // "date"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
-#line 364 "Parser.cpp" // lalr1.cc:636
+#line 366 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 24: // "Min"
+      case 22: // "IfThenElse"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
-#line 371 "Parser.cpp" // lalr1.cc:636
+#line 373 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 25: // "Max"
+      case 23: // "Min"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
-#line 378 "Parser.cpp" // lalr1.cc:636
+#line 380 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 26: // "Pay"
+      case 24: // "Max"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
-#line 385 "Parser.cpp" // lalr1.cc:636
+#line 387 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 27: // "Cache"
+      case 25: // "Pay"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
-#line 392 "Parser.cpp" // lalr1.cc:636
+#line 394 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 31: // assignment
+      case 26: // "Cache"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
+        { yyoutput << yysym.value.template as< std::string > (); }
+#line 401 "Parser.cpp" // lalr1.cc:636
+        break;
+
+      case 30: // assignment
+
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
-#line 399 "Parser.cpp" // lalr1.cc:636
+#line 408 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 32: // exp
+      case 31: // exp
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
-#line 406 "Parser.cpp" // lalr1.cc:636
+#line 415 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 33: // function
+      case 32: // function
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
-#line 413 "Parser.cpp" // lalr1.cc:636
+#line 422 "Parser.cpp" // lalr1.cc:636
         break;
 
-      case 34: // funcname
+      case 33: // funcname
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
-#line 420 "Parser.cpp" // lalr1.cc:636
+#line 429 "Parser.cpp" // lalr1.cc:636
         break;
 
 
@@ -535,7 +544,7 @@ namespace QuantLib { namespace Scripting {
   yyla.location.begin.filename = yyla.location.end.filename = &driver.text();
 }
 
-#line 539 "Parser.cpp" // lalr1.cc:741
+#line 548 "Parser.cpp" // lalr1.cc:741
 
     /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
@@ -625,20 +634,21 @@ namespace QuantLib { namespace Scripting {
          when using variants.  */
         switch (yyr1_[yyn])
     {
-      case 31: // assignment
-      case 32: // exp
-      case 33: // function
-      case 34: // funcname
+      case 30: // assignment
+      case 31: // exp
+      case 32: // function
+      case 33: // funcname
         yylhs.value.build< boost::shared_ptr<Expression> > ();
         break;
 
-      case 21: // "identifier"
-      case 22: // "number"
-      case 23: // "IfThenElse"
-      case 24: // "Min"
-      case 25: // "Max"
-      case 26: // "Pay"
-      case 27: // "Cache"
+      case 19: // "identifier"
+      case 20: // "number"
+      case 21: // "date"
+      case 22: // "IfThenElse"
+      case 23: // "Min"
+      case 24: // "Max"
+      case 25: // "Pay"
+      case 26: // "Cache"
         yylhs.value.build< std::string > ();
         break;
 
@@ -660,169 +670,181 @@ namespace QuantLib { namespace Scripting {
           switch (yyn)
             {
   case 2:
-#line 92 "parser.y" // lalr1.cc:859
+#line 93 "parser.y" // lalr1.cc:859
     { driver.setExpressionTree(yystack_[0].value.as< boost::shared_ptr<Expression> > ()); }
-#line 666 "Parser.cpp" // lalr1.cc:859
+#line 676 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 3:
-#line 95 "parser.y" // lalr1.cc:859
+#line 96 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::ASSIGNMENT,yystack_[2].value.as< std::string > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 672 "Parser.cpp" // lalr1.cc:859
+#line 682 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 4:
-#line 99 "parser.y" // lalr1.cc:859
+#line 100 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::UNARYPLUS,"",yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 678 "Parser.cpp" // lalr1.cc:859
+#line 688 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 5:
-#line 101 "parser.y" // lalr1.cc:859
+#line 102 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::UNARYMINUS,"",yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 684 "Parser.cpp" // lalr1.cc:859
+#line 694 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 6:
-#line 102 "parser.y" // lalr1.cc:859
+#line 103 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PLUS,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 690 "Parser.cpp" // lalr1.cc:859
+#line 700 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 7:
-#line 103 "parser.y" // lalr1.cc:859
+#line 104 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MINUS,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 696 "Parser.cpp" // lalr1.cc:859
+#line 706 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 8:
-#line 104 "parser.y" // lalr1.cc:859
+#line 105 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MULT,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 702 "Parser.cpp" // lalr1.cc:859
+#line 712 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 9:
-#line 105 "parser.y" // lalr1.cc:859
+#line 106 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::DIVISION,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 708 "Parser.cpp" // lalr1.cc:859
+#line 718 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 10:
-#line 107 "parser.y" // lalr1.cc:859
+#line 108 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"==",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 714 "Parser.cpp" // lalr1.cc:859
+#line 724 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 11:
-#line 109 "parser.y" // lalr1.cc:859
+#line 110 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"!=",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 720 "Parser.cpp" // lalr1.cc:859
+#line 730 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 12:
-#line 111 "parser.y" // lalr1.cc:859
+#line 112 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<=",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 726 "Parser.cpp" // lalr1.cc:859
+#line 736 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 13:
-#line 113 "parser.y" // lalr1.cc:859
+#line 114 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">=",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 732 "Parser.cpp" // lalr1.cc:859
+#line 742 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 14:
-#line 115 "parser.y" // lalr1.cc:859
+#line 116 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 738 "Parser.cpp" // lalr1.cc:859
+#line 748 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 15:
-#line 117 "parser.y" // lalr1.cc:859
+#line 118 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 744 "Parser.cpp" // lalr1.cc:859
+#line 754 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 16:
-#line 119 "parser.y" // lalr1.cc:859
+#line 120 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"&&",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 750 "Parser.cpp" // lalr1.cc:859
+#line 760 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 17:
-#line 121 "parser.y" // lalr1.cc:859
+#line 122 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"||",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 756 "Parser.cpp" // lalr1.cc:859
+#line 766 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 18:
-#line 122 "parser.y" // lalr1.cc:859
+#line 123 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = yystack_[1].value.as< boost::shared_ptr<Expression> > (); }
-#line 762 "Parser.cpp" // lalr1.cc:859
+#line 772 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 19:
-#line 123 "parser.y" // lalr1.cc:859
+#line 124 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,yystack_[0].value.as< std::string > ())); }
-#line 768 "Parser.cpp" // lalr1.cc:859
+#line 778 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 20:
-#line 124 "parser.y" // lalr1.cc:859
+#line 125 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::NUMBER,yystack_[0].value.as< std::string > ())); }
-#line 774 "Parser.cpp" // lalr1.cc:859
+#line 784 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 21:
-#line 126 "parser.y" // lalr1.cc:859
+#line 127 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::IFTHENELSE,"",yystack_[5].value.as< boost::shared_ptr<Expression> > (),yystack_[3].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 780 "Parser.cpp" // lalr1.cc:859
+#line 790 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 22:
-#line 128 "parser.y" // lalr1.cc:859
+#line 129 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MIN,"",yystack_[3].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 786 "Parser.cpp" // lalr1.cc:859
+#line 796 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 23:
-#line 130 "parser.y" // lalr1.cc:859
+#line 131 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MAX,"",yystack_[3].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 792 "Parser.cpp" // lalr1.cc:859
+#line 802 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 24:
-#line 132 "parser.y" // lalr1.cc:859
+#line 133 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAY,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 798 "Parser.cpp" // lalr1.cc:859
+#line 808 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 25:
-#line 134 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::CACHE,"",yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 804 "Parser.cpp" // lalr1.cc:859
+#line 135 "parser.y" // lalr1.cc:859
+    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAY_WITHDATE,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ()));  }
+#line 814 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 26:
-#line 135 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = yystack_[0].value.as< boost::shared_ptr<Expression> > (); }
-#line 810 "Parser.cpp" // lalr1.cc:859
+#line 137 "parser.y" // lalr1.cc:859
+    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::CACHE,"",yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
+#line 820 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 27:
-#line 141 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ())); }
-#line 816 "Parser.cpp" // lalr1.cc:859
+#line 138 "parser.y" // lalr1.cc:859
+    { yylhs.value.as< boost::shared_ptr<Expression> > () = yystack_[0].value.as< boost::shared_ptr<Expression> > (); }
+#line 826 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 28:
-#line 144 "parser.y" // lalr1.cc:859
+#line 143 "parser.y" // lalr1.cc:859
+    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ())); }
+#line 832 "Parser.cpp" // lalr1.cc:859
+    break;
+
+  case 29:
+#line 145 "parser.y" // lalr1.cc:859
+    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ())); }
+#line 838 "Parser.cpp" // lalr1.cc:859
+    break;
+
+  case 30:
+#line 149 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,yystack_[0].value.as< std::string > ())); }
-#line 822 "Parser.cpp" // lalr1.cc:859
+#line 844 "Parser.cpp" // lalr1.cc:859
     break;
 
 
-#line 826 "Parser.cpp" // lalr1.cc:859
+#line 848 "Parser.cpp" // lalr1.cc:859
             default:
               break;
             }
@@ -1077,40 +1099,40 @@ namespace QuantLib { namespace Scripting {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -17;
+  const signed char Parser::yypact_ninf_ = -16;
 
-  const signed char Parser::yytable_ninf_ = -29;
+  const signed char Parser::yytable_ninf_ = -31;
 
   const short int
   Parser::yypact_[] =
   {
-     -16,     3,     7,   -17,    35,   -17,    35,    35,    35,    25,
-     -17,    26,    27,    28,    29,    30,   210,   -17,    34,    33,
-      33,    60,    35,    35,    35,    35,    35,    35,    35,    35,
-      35,    35,    35,    35,    35,    35,    35,    35,    35,    19,
-     -17,    75,    90,   105,   120,   135,    -3,    -3,    33,    33,
-     210,   210,   210,   210,   210,   210,   210,   210,    43,    35,
-      35,    35,    46,   -17,   -17,   150,   165,   180,    61,    35,
-     -17,   -17,   -17,   195,   -17
+     -12,    44,    41,   -16,    38,   -16,    38,    38,    38,    40,
+     -16,    42,    43,    45,    51,    57,   213,   -16,    65,    22,
+      22,    63,    38,    38,    38,    38,    38,    38,    38,    38,
+      38,    38,    38,    38,    38,    38,    38,    38,    38,   -15,
+     -16,    78,    93,   108,   123,   138,    -3,    -3,    22,    22,
+     213,   213,   213,   213,   213,   213,   213,   213,    62,    77,
+      38,    38,    38,    24,   -16,   -16,   -16,   153,   168,   183,
+      92,   107,    38,   -16,   -16,   -16,   -16,   198,   -16
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
        0,     0,     0,     2,     0,     1,     0,     0,     0,    19,
-      20,     0,     0,     0,     0,     0,     3,    26,     0,     5,
+      20,     0,     0,     0,     0,     0,     3,    27,     0,     5,
        4,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
       18,     0,     0,     0,     0,     0,     7,     6,     8,     9,
       10,    11,    12,    13,    16,    17,    14,    15,     0,     0,
-       0,     0,     0,    25,    27,     0,     0,     0,     0,     0,
-      22,    23,    24,     0,    21
+       0,     0,     0,     0,    26,    28,    29,     0,     0,     0,
+       0,     0,     0,    22,    23,    24,    25,     0,    21
   };
 
   const signed char
   Parser::yypgoto_[] =
   {
-     -17,   -17,   -17,    -6,   -17,   -17
+     -16,   -16,   -16,    -6,   -16,   -16
   };
 
   const signed char
@@ -1122,78 +1144,81 @@ namespace QuantLib { namespace Scripting {
   const signed char
   Parser::yytable_[] =
   {
-      19,    20,    21,    29,    30,     1,     4,     5,    31,    32,
+      19,    20,    21,    29,    30,    58,    59,     1,    31,    32,
       33,    34,    35,    36,    37,    38,    41,    42,    43,    44,
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
-      55,    56,    57,   -28,    22,    23,    24,    25,    26,     6,
-       7,    58,    39,     8,    31,    32,    33,    34,    35,    36,
-      37,    38,    64,    65,    66,    67,     9,    10,    11,    12,
-      13,    14,    15,    73,    27,    28,    29,    30,    68,    40,
-      72,    31,    32,    33,    34,    35,    36,    37,    38,    27,
-      28,    29,    30,     0,     0,    59,    31,    32,    33,    34,
-      35,    36,    37,    38,    27,    28,    29,    30,     0,     0,
-      60,    31,    32,    33,    34,    35,    36,    37,    38,    27,
-      28,    29,    30,     0,     0,    61,    31,    32,    33,    34,
-      35,    36,    37,    38,    27,    28,    29,    30,     0,     0,
-      62,    31,    32,    33,    34,    35,    36,    37,    38,    27,
-      28,    29,    30,     0,    63,     0,    31,    32,    33,    34,
-      35,    36,    37,    38,    27,    28,    29,    30,     0,     0,
-      69,    31,    32,    33,    34,    35,    36,    37,    38,    27,
-      28,    29,    30,     0,    70,     0,    31,    32,    33,    34,
-      35,    36,    37,    38,    27,    28,    29,    30,     0,    71,
-       0,    31,    32,    33,    34,    35,    36,    37,    38,    27,
-      28,    29,    30,     0,    74,     0,    31,    32,    33,    34,
-      35,    36,    37,    38,    27,    28,    29,    30,     0,     0,
-       0,    31,    32,    33,    34,    35,    36,    37,    38
+      55,    56,    57,    31,    32,    33,    34,    35,    36,    37,
+      38,     5,     6,     7,    70,    71,     8,     4,   -30,     0,
+      22,    23,     0,    24,    67,    68,    69,     9,    10,    25,
+      11,    12,    13,    14,    15,    26,    77,    27,    28,    29,
+      30,    65,    40,    39,    31,    32,    33,    34,    35,    36,
+      37,    38,    27,    28,    29,    30,    66,     0,    60,    31,
+      32,    33,    34,    35,    36,    37,    38,    27,    28,    29,
+      30,    75,     0,    61,    31,    32,    33,    34,    35,    36,
+      37,    38,    27,    28,    29,    30,    76,     0,    62,    31,
+      32,    33,    34,    35,    36,    37,    38,    27,    28,    29,
+      30,     0,     0,    63,    31,    32,    33,    34,    35,    36,
+      37,    38,    27,    28,    29,    30,     0,    64,     0,    31,
+      32,    33,    34,    35,    36,    37,    38,    27,    28,    29,
+      30,     0,     0,    72,    31,    32,    33,    34,    35,    36,
+      37,    38,    27,    28,    29,    30,     0,    73,     0,    31,
+      32,    33,    34,    35,    36,    37,    38,    27,    28,    29,
+      30,     0,    74,     0,    31,    32,    33,    34,    35,    36,
+      37,    38,    27,    28,    29,    30,     0,    78,     0,    31,
+      32,    33,    34,    35,    36,    37,    38,    27,    28,    29,
+      30,     0,     0,     0,    31,    32,    33,    34,    35,    36,
+      37,    38
   };
 
   const signed char
   Parser::yycheck_[] =
   {
-       6,     7,     8,     6,     7,    21,     3,     0,    11,    12,
+       6,     7,     8,     6,     7,    20,    21,    19,    11,    12,
       13,    14,    15,    16,    17,    18,    22,    23,    24,    25,
       26,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,     8,     8,     8,     8,     8,     8,     4,
-       5,    22,     8,     8,    11,    12,    13,    14,    15,    16,
-      17,    18,     9,    59,    60,    61,    21,    22,    23,    24,
-      25,    26,    27,    69,     4,     5,     6,     7,    22,     9,
-       9,    11,    12,    13,    14,    15,    16,    17,    18,     4,
-       5,     6,     7,    -1,    -1,    10,    11,    12,    13,    14,
-      15,    16,    17,    18,     4,     5,     6,     7,    -1,    -1,
-      10,    11,    12,    13,    14,    15,    16,    17,    18,     4,
-       5,     6,     7,    -1,    -1,    10,    11,    12,    13,    14,
-      15,    16,    17,    18,     4,     5,     6,     7,    -1,    -1,
-      10,    11,    12,    13,    14,    15,    16,    17,    18,     4,
-       5,     6,     7,    -1,     9,    -1,    11,    12,    13,    14,
-      15,    16,    17,    18,     4,     5,     6,     7,    -1,    -1,
-      10,    11,    12,    13,    14,    15,    16,    17,    18,     4,
-       5,     6,     7,    -1,     9,    -1,    11,    12,    13,    14,
-      15,    16,    17,    18,     4,     5,     6,     7,    -1,     9,
-      -1,    11,    12,    13,    14,    15,    16,    17,    18,     4,
-       5,     6,     7,    -1,     9,    -1,    11,    12,    13,    14,
-      15,    16,    17,    18,     4,     5,     6,     7,    -1,    -1,
-      -1,    11,    12,    13,    14,    15,    16,    17,    18
+      36,    37,    38,    11,    12,    13,    14,    15,    16,    17,
+      18,     0,     4,     5,    20,    21,     8,     3,     8,    -1,
+       8,     8,    -1,     8,    60,    61,    62,    19,    20,     8,
+      22,    23,    24,    25,    26,     8,    72,     4,     5,     6,
+       7,     9,     9,     8,    11,    12,    13,    14,    15,    16,
+      17,    18,     4,     5,     6,     7,     9,    -1,    10,    11,
+      12,    13,    14,    15,    16,    17,    18,     4,     5,     6,
+       7,     9,    -1,    10,    11,    12,    13,    14,    15,    16,
+      17,    18,     4,     5,     6,     7,     9,    -1,    10,    11,
+      12,    13,    14,    15,    16,    17,    18,     4,     5,     6,
+       7,    -1,    -1,    10,    11,    12,    13,    14,    15,    16,
+      17,    18,     4,     5,     6,     7,    -1,     9,    -1,    11,
+      12,    13,    14,    15,    16,    17,    18,     4,     5,     6,
+       7,    -1,    -1,    10,    11,    12,    13,    14,    15,    16,
+      17,    18,     4,     5,     6,     7,    -1,     9,    -1,    11,
+      12,    13,    14,    15,    16,    17,    18,     4,     5,     6,
+       7,    -1,     9,    -1,    11,    12,    13,    14,    15,    16,
+      17,    18,     4,     5,     6,     7,    -1,     9,    -1,    11,
+      12,    13,    14,    15,    16,    17,    18,     4,     5,     6,
+       7,    -1,    -1,    -1,    11,    12,    13,    14,    15,    16,
+      17,    18
   };
 
   const unsigned char
   Parser::yystos_[] =
   {
-       0,    21,    30,    31,     3,     0,     4,     5,     8,    21,
-      22,    23,    24,    25,    26,    27,    32,    33,    34,    32,
-      32,    32,     8,     8,     8,     8,     8,     4,     5,     6,
+       0,    19,    29,    30,     3,     0,     4,     5,     8,    19,
+      20,    22,    23,    24,    25,    26,    31,    32,    33,    31,
+      31,    31,     8,     8,     8,     8,     8,     4,     5,     6,
        7,    11,    12,    13,    14,    15,    16,    17,    18,     8,
-       9,    32,    32,    32,    32,    32,    32,    32,    32,    32,
-      32,    32,    32,    32,    32,    32,    32,    32,    22,    10,
-      10,    10,    10,     9,     9,    32,    32,    32,    22,    10,
-       9,     9,     9,    32,     9
+       9,    31,    31,    31,    31,    31,    31,    31,    31,    31,
+      31,    31,    31,    31,    31,    31,    31,    31,    20,    21,
+      10,    10,    10,    10,     9,     9,     9,    31,    31,    31,
+      20,    21,    10,     9,     9,     9,     9,    31,     9
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
-       0,    29,    30,    31,    32,    32,    32,    32,    32,    32,
-      32,    32,    32,    32,    32,    32,    32,    32,    32,    32,
-      32,    32,    32,    32,    32,    32,    32,    33,    34
+       0,    28,    29,    30,    31,    31,    31,    31,    31,    31,
+      31,    31,    31,    31,    31,    31,    31,    31,    31,    31,
+      31,    31,    31,    31,    31,    31,    31,    31,    32,    32,
+      33
   };
 
   const unsigned char
@@ -1201,7 +1226,8 @@ namespace QuantLib { namespace Scripting {
   {
        0,     2,     1,     3,     2,     2,     3,     3,     3,     3,
        3,     3,     3,     3,     3,     3,     3,     3,     3,     1,
-       1,     8,     6,     6,     6,     4,     1,     4,     1
+       1,     8,     6,     6,     6,     6,     4,     1,     4,     4,
+       1
   };
 
 
@@ -1213,8 +1239,8 @@ namespace QuantLib { namespace Scripting {
   {
   "\"end of file\"", "error", "$undefined", "\"=\"", "\"-\"", "\"+\"",
   "\"*\"", "\"/\"", "\"(\"", "\")\"", "\",\"", "\"==\"", "\"!=\"",
-  "\"<=\"", "\">=\"", "\"&&\"", "\"||\"", "\"<\"", "\">\"", "\"[\"",
-  "\"]\"", "\"identifier\"", "\"number\"", "\"IfThenElse\"", "\"Min\"",
+  "\"<=\"", "\">=\"", "\"&&\"", "\"||\"", "\"<\"", "\">\"",
+  "\"identifier\"", "\"number\"", "\"date\"", "\"IfThenElse\"", "\"Min\"",
   "\"Max\"", "\"Pay\"", "\"Cache\"", "UNARY", "$accept", "unit",
   "assignment", "exp", "function", "funcname", YY_NULLPTR
   };
@@ -1223,9 +1249,10 @@ namespace QuantLib { namespace Scripting {
   const unsigned char
   Parser::yyrline_[] =
   {
-       0,    92,    92,    95,    98,   100,   102,   103,   104,   105,
-     106,   108,   110,   112,   114,   116,   118,   120,   122,   123,
-     124,   125,   127,   129,   131,   133,   135,   140,   144
+       0,    93,    93,    96,    99,   101,   103,   104,   105,   106,
+     107,   109,   111,   113,   115,   117,   119,   121,   123,   124,
+     125,   126,   128,   130,   132,   134,   136,   138,   142,   144,
+     149
   };
 
   // Print the state stack on the debug stream.
@@ -1260,8 +1287,8 @@ namespace QuantLib { namespace Scripting {
 
 #line 4 "parser.y" // lalr1.cc:1167
 } } // QuantLib::Scripting
-#line 1264 "Parser.cpp" // lalr1.cc:1167
-#line 149 "parser.y" // lalr1.cc:1168
+#line 1291 "Parser.cpp" // lalr1.cc:1167
+#line 156 "parser.y" // lalr1.cc:1168
 
 
 void QuantLib::Scripting::Parser::error (const location_type& l, const std::string& m) {

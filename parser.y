@@ -65,11 +65,10 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
   OR          "||"
   LESS        "<"
   GREATER     ">"
-  LBRACK      "["
-  RBRACK      "]"
 ;
 %token <std::string> IDENTIFIER  "identifier"
 %token <std::string> NUMBER      "number"
+%token <std::string> DATE        "date"
 %token <std::string> IFTHENELSE  "IfThenElse"
 %token <std::string> MIN         "Min"
 %token <std::string> MAX         "Max"
@@ -80,6 +79,8 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
 %type  <boost::shared_ptr<Expression>> assignment
 %type  <boost::shared_ptr<Expression>> function
 %type  <boost::shared_ptr<Expression>> funcname
+%type  <std::string>                   dateOrNumber
+
 
 %printer { yyoutput << $$; } <*>;
 %%
@@ -130,21 +131,27 @@ exp:
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::MAX,"",$3,$5));  }
 | PAY "(" exp "," NUMBER ")"
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAY,$5,$3));  }
+| PAY "(" exp "," DATE ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAY_WITHDATE,$5,$3));  }
 | CACHE "(" exp ")"
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::CACHE,"",$3));  }
 | function      { $$ = $1; }
 ;
 
-
 function:
   funcname "(" NUMBER ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); } ;
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); }
+| funcname "(" DATE ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,$3,$1)); }
+;
 
 funcname:
   IDENTIFIER { $$ = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,$1)); } ;
 
-
-
+dateOrNumber:
+  DATE          { $$ = $1; }
+| NUMBER        { $$ = $1; }
+;
 
 %%
 

@@ -42,8 +42,10 @@ namespace QuantLib {
 				MIN,
 				MAX,
 				PAY,
+				PAY_WITHDATE,
 				CACHE,
 				PAYOFFAT,
+				PAYOFFAT_WITHDATE,
 				UNKNOWNTYPE
 			};
 			Expression(const Type                   type,

@@ -304,6 +304,7 @@ namespace QuantLib { namespace Scripting {
 
       // "identifier"
       // "number"
+      // "date"
       // "IfThenElse"
       // "Min"
       // "Max"
@@ -349,16 +350,15 @@ namespace QuantLib { namespace Scripting {
         TOK_OR = 271,
         TOK_LESS = 272,
         TOK_GREATER = 273,
-        TOK_LBRACK = 274,
-        TOK_RBRACK = 275,
-        TOK_IDENTIFIER = 276,
-        TOK_NUMBER = 277,
-        TOK_IFTHENELSE = 278,
-        TOK_MIN = 279,
-        TOK_MAX = 280,
-        TOK_PAY = 281,
-        TOK_CACHE = 282,
-        TOK_UNARY = 283
+        TOK_IDENTIFIER = 274,
+        TOK_NUMBER = 275,
+        TOK_DATE = 276,
+        TOK_IFTHENELSE = 277,
+        TOK_MIN = 278,
+        TOK_MAX = 279,
+        TOK_PAY = 280,
+        TOK_CACHE = 281,
+        TOK_UNARY = 282
       };
     };
 
@@ -537,19 +537,15 @@ namespace QuantLib { namespace Scripting {
 
     static inline
     symbol_type
-    make_LBRACK (const location_type& l);
-
-    static inline
-    symbol_type
-    make_RBRACK (const location_type& l);
-
-    static inline
-    symbol_type
     make_IDENTIFIER (const std::string& v, const location_type& l);
 
     static inline
     symbol_type
     make_NUMBER (const std::string& v, const location_type& l);
+
+    static inline
+    symbol_type
+    make_DATE (const std::string& v, const location_type& l);
 
     static inline
     symbol_type
@@ -780,12 +776,12 @@ namespace QuantLib { namespace Scripting {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 228,     ///< Last index in yytable_.
+      yylast_ = 231,     ///< Last index in yytable_.
       yynnts_ = 6,  ///< Number of nonterminal symbols.
       yyfinal_ = 5, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 29  ///< Number of tokens.
+      yyntokens_ = 28  ///< Number of tokens.
     };
 
 
@@ -831,9 +827,9 @@ namespace QuantLib { namespace Scripting {
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28
+      25,    26,    27
     };
-    const unsigned int user_token_number_max_ = 283;
+    const unsigned int user_token_number_max_ = 282;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -866,20 +862,21 @@ namespace QuantLib { namespace Scripting {
   {
       switch (other.type_get ())
     {
-      case 31: // assignment
-      case 32: // exp
-      case 33: // function
-      case 34: // funcname
+      case 30: // assignment
+      case 31: // exp
+      case 32: // function
+      case 33: // funcname
         value.copy< boost::shared_ptr<Expression> > (other.value);
         break;
 
-      case 21: // "identifier"
-      case 22: // "number"
-      case 23: // "IfThenElse"
-      case 24: // "Min"
-      case 25: // "Max"
-      case 26: // "Pay"
-      case 27: // "Cache"
+      case 19: // "identifier"
+      case 20: // "number"
+      case 21: // "date"
+      case 22: // "IfThenElse"
+      case 23: // "Min"
+      case 24: // "Max"
+      case 25: // "Pay"
+      case 26: // "Cache"
         value.copy< std::string > (other.value);
         break;
 
@@ -900,20 +897,21 @@ namespace QuantLib { namespace Scripting {
     (void) v;
       switch (this->type_get ())
     {
-      case 31: // assignment
-      case 32: // exp
-      case 33: // function
-      case 34: // funcname
+      case 30: // assignment
+      case 31: // exp
+      case 32: // function
+      case 33: // funcname
         value.copy< boost::shared_ptr<Expression> > (v);
         break;
 
-      case 21: // "identifier"
-      case 22: // "number"
-      case 23: // "IfThenElse"
-      case 24: // "Min"
-      case 25: // "Max"
-      case 26: // "Pay"
-      case 27: // "Cache"
+      case 19: // "identifier"
+      case 20: // "number"
+      case 21: // "date"
+      case 22: // "IfThenElse"
+      case 23: // "Min"
+      case 24: // "Max"
+      case 25: // "Pay"
+      case 26: // "Cache"
         value.copy< std::string > (v);
         break;
 
@@ -972,20 +970,21 @@ namespace QuantLib { namespace Scripting {
     // Type destructor.
     switch (yytype)
     {
-      case 31: // assignment
-      case 32: // exp
-      case 33: // function
-      case 34: // funcname
+      case 30: // assignment
+      case 31: // exp
+      case 32: // function
+      case 33: // funcname
         value.template destroy< boost::shared_ptr<Expression> > ();
         break;
 
-      case 21: // "identifier"
-      case 22: // "number"
-      case 23: // "IfThenElse"
-      case 24: // "Min"
-      case 25: // "Max"
-      case 26: // "Pay"
-      case 27: // "Cache"
+      case 19: // "identifier"
+      case 20: // "number"
+      case 21: // "date"
+      case 22: // "IfThenElse"
+      case 23: // "Min"
+      case 24: // "Max"
+      case 25: // "Pay"
+      case 26: // "Cache"
         value.template destroy< std::string > ();
         break;
 
@@ -1012,20 +1011,21 @@ namespace QuantLib { namespace Scripting {
     super_type::move(s);
       switch (this->type_get ())
     {
-      case 31: // assignment
-      case 32: // exp
-      case 33: // function
-      case 34: // funcname
+      case 30: // assignment
+      case 31: // exp
+      case 32: // function
+      case 33: // funcname
         value.move< boost::shared_ptr<Expression> > (s.value);
         break;
 
-      case 21: // "identifier"
-      case 22: // "number"
-      case 23: // "IfThenElse"
-      case 24: // "Min"
-      case 25: // "Max"
-      case 26: // "Pay"
-      case 27: // "Cache"
+      case 19: // "identifier"
+      case 20: // "number"
+      case 21: // "date"
+      case 22: // "IfThenElse"
+      case 23: // "Min"
+      case 24: // "Max"
+      case 25: // "Pay"
+      case 26: // "Cache"
         value.move< std::string > (s.value);
         break;
 
@@ -1086,7 +1086,7 @@ namespace QuantLib { namespace Scripting {
     {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281,   282,   283
+     275,   276,   277,   278,   279,   280,   281,   282
     };
     return static_cast<token_type> (yytoken_number_[type]);
   }
@@ -1194,18 +1194,6 @@ namespace QuantLib { namespace Scripting {
   }
 
   Parser::symbol_type
-  Parser::make_LBRACK (const location_type& l)
-  {
-    return symbol_type (token::TOK_LBRACK, l);
-  }
-
-  Parser::symbol_type
-  Parser::make_RBRACK (const location_type& l)
-  {
-    return symbol_type (token::TOK_RBRACK, l);
-  }
-
-  Parser::symbol_type
   Parser::make_IDENTIFIER (const std::string& v, const location_type& l)
   {
     return symbol_type (token::TOK_IDENTIFIER, v, l);
@@ -1215,6 +1203,12 @@ namespace QuantLib { namespace Scripting {
   Parser::make_NUMBER (const std::string& v, const location_type& l)
   {
     return symbol_type (token::TOK_NUMBER, v, l);
+  }
+
+  Parser::symbol_type
+  Parser::make_DATE (const std::string& v, const location_type& l)
+  {
+    return symbol_type (token::TOK_DATE, v, l);
   }
 
   Parser::symbol_type
@@ -1256,7 +1250,7 @@ namespace QuantLib { namespace Scripting {
 
 #line 4 "parser.y" // lalr1.cc:377
 } } // QuantLib::Scripting
-#line 1260 "Parser.hpp" // lalr1.cc:377
+#line 1254 "Parser.hpp" // lalr1.cc:377
 
 
 

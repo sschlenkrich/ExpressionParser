@@ -53,8 +53,8 @@ namespace QuantLib {
         std::string Expression::toString(const size_t level) {
 			std::string indent = "";
 			for (size_t k = 0; k < level; ++k) indent = indent + "  ";
-            if (type_ == Expression::NUMBER)     return std::string(indent + "NUM(" + leafs_[0] + ")\n");
-            if (type_ == Expression::IDENTIFIER) return std::string(indent + "TXT(" + leafs_[0] + ")\n");
+			if (type_ == Expression::NUMBER)     return std::string(indent + "NUM(" + ((leafs_.size()>0)?(leafs_[0]):("")) + ")\n");
+			if (type_ == Expression::IDENTIFIER) return std::string(indent + "TXT(" + ((leafs_.size()>0)?(leafs_[0]):("")) + ")\n");
             std::string res;
             switch (type_) {
             case Expression::ASSIGNMENT  : res = "ASSIGNMENT";  break;
@@ -66,15 +66,15 @@ namespace QuantLib {
             case Expression::DIVISION	 : res = "DIVISION";    break;
             case Expression::LOGICAL	 : res = "LOGICAL";     break;
             case Expression::NEXT        : res = "NEXT";        break;
-            case Expression::IDENTIFIER	 : res = "IDENTIFIER";  break;
-            case Expression::NUMBER		 : res = "NUMBER";      break;
             case Expression::IFTHENELSE	 : res = "IFTHENELSE";  break;
             case Expression::MIN		 : res = "MIN";         break;
             case Expression::MAX		 : res = "MAX";         break;
             case Expression::PAY		 : res = "PAY";         break;
-            case Expression::CACHE		 : res = "CACHE";       break;
+			case Expression::PAY_WITHDATE: res = "PAY_WITHDATE"; break;
+			case Expression::CACHE		 : res = "CACHE";       break;
             case Expression::PAYOFFAT	 : res = "PAYOFFAT";    break;
-            case Expression::UNKNOWNTYPE : res = "UNKNOWNTYPE"; break;
+			case Expression::PAYOFFAT_WITHDATE: res = "PAYOFFAT_WITHDATE"; break;
+			case Expression::UNKNOWNTYPE : res = "UNKNOWNTYPE"; break;
             default:
 				res = "Error! Unhandled Type";
                 break;

@@ -26,6 +26,8 @@ int     [0-9]+
 double  [0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
 blank   [ \t]
 
+date    [0-9]{2}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[0-9]{4}
+
 %{
   // Code run each time a pattern is matched.
   # define YY_USER_ACTION  driver.loc().columns (yyleng);
@@ -40,6 +42,8 @@ blank   [ \t]
 
 {blank}+         driver.loc().step ();
 [\n]+            driver.loc().lines (yyleng); driver.loc().step ();
+
+{date}           return QuantLib::Scripting::Parser::make_DATE(yytext, driver.loc());
 
 "=="             return QuantLib::Scripting::Parser::make_EQUAL(driver.loc());
 "!="             return QuantLib::Scripting::Parser::make_NEQUUAL(driver.loc());
@@ -60,19 +64,16 @@ blank   [ \t]
 ","              return QuantLib::Scripting::Parser::make_COMMA(driver.loc());
 "="              return QuantLib::Scripting::Parser::make_ASSIGN(driver.loc());
 
-"["              return QuantLib::Scripting::Parser::make_LBRACK(driver.loc());
-"]"              return QuantLib::Scripting::Parser::make_RBRACK(driver.loc());
-
 "IfThenElse"	 return QuantLib::Scripting::Parser::make_IFTHENELSE(yytext,driver.loc());
 "Min"            return QuantLib::Scripting::Parser::make_MIN(yytext,driver.loc());       
 "Max"            return QuantLib::Scripting::Parser::make_MAX(yytext,driver.loc());       
 "Pay"            return QuantLib::Scripting::Parser::make_PAY(yytext,driver.loc());       
 "Cache"          return QuantLib::Scripting::Parser::make_CACHE(yytext,driver.loc());     
 
-{double}         return QuantLib::Scripting::Parser::make_NUMBER(     yytext, driver.loc());
-{id}             return QuantLib::Scripting::Parser::make_IDENTIFIER( yytext, driver.loc());
+{double}         return QuantLib::Scripting::Parser::make_NUMBER(yytext, driver.loc());
+{id}             return QuantLib::Scripting::Parser::make_IDENTIFIER(yytext, driver.loc());
 
-.        driver.error (driver.loc(), "invalid character");
+.                driver.error (driver.loc(), "invalid character");
 
 <<EOF>>  return QuantLib::Scripting::Parser::make_END(driver.loc());
 
