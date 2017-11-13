@@ -1072,13 +1072,13 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 44 "lexer.l"
-driver.loc().step ();
+driver.loc().step();
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
 #line 45 "lexer.l"
-driver.loc().lines (yyleng); driver.loc().step ();
+driver.loc().lines (yyleng); driver.loc().step();
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -2485,7 +2485,7 @@ void yyfree (void * ptr , yyscan_t yyscanner)
 
 
 // scan_begin() and scan_end() need to be defined here because they
-// access the global variable yyin
+// access Flex functions and Flex structures
 void QuantLib::Scripting::FlexBisonDriver::scan_begin () {  
     struct yyguts_t * yyg;
     yylex_init(&yyscanner_);

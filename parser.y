@@ -79,7 +79,6 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
 %type  <boost::shared_ptr<Expression>> assignment
 %type  <boost::shared_ptr<Expression>> function
 %type  <boost::shared_ptr<Expression>> funcname
-%type  <std::string>                   dateOrNumber
 
 
 %printer { yyoutput << $$; } <*>;
@@ -138,6 +137,7 @@ exp:
 | function      { $$ = $1; }
 ;
 
+/* we handle this case separately to avoid conflicts with pre-defined functions */
 function:
   funcname "(" NUMBER ")"
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); }
@@ -145,13 +145,10 @@ function:
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,$3,$1)); }
 ;
 
+/* ideally we would want to allow any expression as function name */
+/* but this seems to cause conflicts with other rules             */
 funcname:
   IDENTIFIER { $$ = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,$1)); } ;
-
-dateOrNumber:
-  DATE          { $$ = $1; }
-| NUMBER        { $$ = $1; }
-;
 
 %%
 

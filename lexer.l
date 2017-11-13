@@ -40,8 +40,8 @@ date    [0-9]{2}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[0-9]{4}
   driver.loc().step();
 %}
 
-{blank}+         driver.loc().step ();
-[\n]+            driver.loc().lines (yyleng); driver.loc().step ();
+{blank}+         driver.loc().step();
+[\n]+            driver.loc().lines (yyleng); driver.loc().step();
 
 {date}           return QuantLib::Scripting::Parser::make_DATE(yytext, driver.loc());
 
@@ -80,7 +80,7 @@ date    [0-9]{2}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[0-9]{4}
 %%
 
 // scan_begin() and scan_end() need to be defined here because they
-// access the global variable yyin
+// access Flex functions and Flex structures
 void QuantLib::Scripting::FlexBisonDriver::scan_begin () {  
     struct yyguts_t * yyg;
     yylex_init(&yyscanner_);
