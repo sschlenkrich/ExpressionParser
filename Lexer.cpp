@@ -646,8 +646,8 @@ static const flex_int16_t yy_rule_linenum[28] =
 # include <climits>
 # include <cstdlib>
 # include <string>
-# include "FlexBisonDriver.hpp"
 # include "Parser.hpp"
+# include "FlexBisonDriver.hpp"
 #define YY_DECL QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDriver& driver, yyscan_t yyscanner)
 
 

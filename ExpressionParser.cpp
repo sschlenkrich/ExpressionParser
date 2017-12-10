@@ -5,8 +5,9 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include "Expression.hpp"
-#include "FlexBisonDriver.hpp"
+#include "expression.hpp"
+#include "Parser.hpp"
+#include "flexbisondriver.hpp"
 
 #include <iostream>
 

@@ -10,7 +10,11 @@ Copyright (C) 2017, Sebastian Schlenkrich
 
 */
 
+
+#include "Parser.hpp"
+
 #include "flexbisondriver.hpp"
+
 #include <sstream>
 
 namespace QuantLib {

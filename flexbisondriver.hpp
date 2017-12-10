@@ -19,8 +19,10 @@ Copyright (C) 2017, Sebastian Schlenkrich
 #include <map>
 #include <boost/shared_ptr.hpp>
 
-#include "Parser.hpp"
-
+#pragma warning( push )
+#pragma warning( disable : 4146)
+#include "location.hh"
+#pragma warning( pop ) 
 
 namespace QuantLib {
 
