@@ -776,7 +776,7 @@ namespace QuantLib { namespace Scripting {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 231,     ///< Last index in yytable_.
+      yylast_ = 246,     ///< Last index in yytable_.
       yynnts_ = 6,  ///< Number of nonterminal symbols.
       yyfinal_ = 5, ///< Termination state number.
       yyterror_ = 1,

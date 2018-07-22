@@ -84,6 +84,9 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
 %printer { yyoutput << $$; } <*>;
 %%
 
+%left "&&" "||";
+%left "==" "!=";
+%left "<" "<=" ">" ">=";
 %left "+" "-";
 %left "*" "/";
 %left UNARY;
