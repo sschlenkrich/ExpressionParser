@@ -49,11 +49,11 @@
 
 #line 51 "Parser.cpp" // lalr1.cc:412
 // Unqualified %code blocks.
-#line 41 "parser.y" // lalr1.cc:413
+#line 42 "parser.y" // lalr1.cc:413
 
 // further .cpp includes
-#include "Expression.hpp"
-#include "FlexBisonDriver.hpp"
+#include "expression.hpp"
+#include "flexbisondriver.hpp"
 // tell Bison that the scanner exists as expected...
 QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDriver& driver, void* yyscanner);
 
@@ -346,84 +346,84 @@ namespace QuantLib { namespace Scripting {
     {
             case 19: // "identifier"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 352 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 20: // "number"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 359 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 21: // "date"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 366 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 22: // "IfThenElse"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 373 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 23: // "Min"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 380 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 24: // "Max"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 387 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 25: // "Pay"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 394 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 26: // "Cache"
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< std::string > (); }
 #line 401 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 30: // assignment
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
 #line 408 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 31: // exp
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
 #line 415 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 32: // function
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
 #line 422 "Parser.cpp" // lalr1.cc:636
         break;
 
       case 33: // funcname
 
-#line 84 "parser.y" // lalr1.cc:636
+#line 85 "parser.y" // lalr1.cc:636
         { yyoutput << yysym.value.template as< boost::shared_ptr<Expression> > (); }
 #line 429 "Parser.cpp" // lalr1.cc:636
         break;
@@ -541,10 +541,11 @@ namespace QuantLib { namespace Scripting {
     #line 32 "parser.y" // lalr1.cc:741
 {
   // Initialize the initial location.
-  yyla.location.begin.filename = yyla.location.end.filename = &driver.text();
+  std::string text_variable = driver.text();
+  yyla.location.begin.filename = yyla.location.end.filename = &text_variable;
 }
 
-#line 548 "Parser.cpp" // lalr1.cc:741
+#line 549 "Parser.cpp" // lalr1.cc:741
 
     /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
@@ -670,181 +671,181 @@ namespace QuantLib { namespace Scripting {
           switch (yyn)
             {
   case 2:
-#line 95 "parser.y" // lalr1.cc:859
+#line 96 "parser.y" // lalr1.cc:859
     { driver.setExpressionTree(yystack_[0].value.as< boost::shared_ptr<Expression> > ()); }
-#line 676 "Parser.cpp" // lalr1.cc:859
+#line 677 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 3:
-#line 98 "parser.y" // lalr1.cc:859
+#line 99 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::ASSIGNMENT,yystack_[2].value.as< std::string > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 682 "Parser.cpp" // lalr1.cc:859
+#line 683 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 4:
-#line 102 "parser.y" // lalr1.cc:859
+#line 103 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::UNARYPLUS,"",yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 688 "Parser.cpp" // lalr1.cc:859
+#line 689 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 5:
-#line 104 "parser.y" // lalr1.cc:859
+#line 105 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::UNARYMINUS,"",yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 694 "Parser.cpp" // lalr1.cc:859
+#line 695 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 6:
-#line 105 "parser.y" // lalr1.cc:859
+#line 106 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PLUS,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 700 "Parser.cpp" // lalr1.cc:859
+#line 701 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 7:
-#line 106 "parser.y" // lalr1.cc:859
+#line 107 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MINUS,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 706 "Parser.cpp" // lalr1.cc:859
+#line 707 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 8:
-#line 107 "parser.y" // lalr1.cc:859
+#line 108 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MULT,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 712 "Parser.cpp" // lalr1.cc:859
+#line 713 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 9:
-#line 108 "parser.y" // lalr1.cc:859
+#line 109 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::DIVISION,"",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 718 "Parser.cpp" // lalr1.cc:859
+#line 719 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 10:
-#line 110 "parser.y" // lalr1.cc:859
+#line 111 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"==",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 724 "Parser.cpp" // lalr1.cc:859
+#line 725 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 11:
-#line 112 "parser.y" // lalr1.cc:859
+#line 113 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"!=",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 730 "Parser.cpp" // lalr1.cc:859
+#line 731 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 12:
-#line 114 "parser.y" // lalr1.cc:859
+#line 115 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<=",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 736 "Parser.cpp" // lalr1.cc:859
+#line 737 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 13:
-#line 116 "parser.y" // lalr1.cc:859
+#line 117 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">=",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 742 "Parser.cpp" // lalr1.cc:859
+#line 743 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 14:
-#line 118 "parser.y" // lalr1.cc:859
+#line 119 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 748 "Parser.cpp" // lalr1.cc:859
+#line 749 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 15:
-#line 120 "parser.y" // lalr1.cc:859
+#line 121 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 754 "Parser.cpp" // lalr1.cc:859
+#line 755 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 16:
-#line 122 "parser.y" // lalr1.cc:859
+#line 123 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"&&",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 760 "Parser.cpp" // lalr1.cc:859
+#line 761 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 17:
-#line 124 "parser.y" // lalr1.cc:859
+#line 125 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"||",yystack_[2].value.as< boost::shared_ptr<Expression> > (),yystack_[0].value.as< boost::shared_ptr<Expression> > ())); }
-#line 766 "Parser.cpp" // lalr1.cc:859
+#line 767 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 18:
-#line 125 "parser.y" // lalr1.cc:859
+#line 126 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = yystack_[1].value.as< boost::shared_ptr<Expression> > (); }
-#line 772 "Parser.cpp" // lalr1.cc:859
+#line 773 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 19:
-#line 126 "parser.y" // lalr1.cc:859
+#line 127 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,yystack_[0].value.as< std::string > ())); }
-#line 778 "Parser.cpp" // lalr1.cc:859
+#line 779 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 20:
-#line 127 "parser.y" // lalr1.cc:859
+#line 128 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::NUMBER,yystack_[0].value.as< std::string > ())); }
-#line 784 "Parser.cpp" // lalr1.cc:859
+#line 785 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 21:
-#line 129 "parser.y" // lalr1.cc:859
+#line 130 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::IFTHENELSE,"",yystack_[5].value.as< boost::shared_ptr<Expression> > (),yystack_[3].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 790 "Parser.cpp" // lalr1.cc:859
+#line 791 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 22:
-#line 131 "parser.y" // lalr1.cc:859
+#line 132 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MIN,"",yystack_[3].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 796 "Parser.cpp" // lalr1.cc:859
+#line 797 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 23:
-#line 133 "parser.y" // lalr1.cc:859
+#line 134 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::MAX,"",yystack_[3].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 802 "Parser.cpp" // lalr1.cc:859
+#line 803 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 24:
-#line 135 "parser.y" // lalr1.cc:859
+#line 136 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAY,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 808 "Parser.cpp" // lalr1.cc:859
+#line 809 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 25:
-#line 137 "parser.y" // lalr1.cc:859
+#line 138 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAY_WITHDATE,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 814 "Parser.cpp" // lalr1.cc:859
+#line 815 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 26:
-#line 139 "parser.y" // lalr1.cc:859
+#line 140 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::CACHE,"",yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
-#line 820 "Parser.cpp" // lalr1.cc:859
+#line 821 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 27:
-#line 140 "parser.y" // lalr1.cc:859
+#line 141 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = yystack_[0].value.as< boost::shared_ptr<Expression> > (); }
-#line 826 "Parser.cpp" // lalr1.cc:859
+#line 827 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 28:
-#line 146 "parser.y" // lalr1.cc:859
+#line 147 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ())); }
-#line 832 "Parser.cpp" // lalr1.cc:859
+#line 833 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 29:
-#line 148 "parser.y" // lalr1.cc:859
+#line 149 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,yystack_[1].value.as< std::string > (),yystack_[3].value.as< boost::shared_ptr<Expression> > ())); }
-#line 838 "Parser.cpp" // lalr1.cc:859
+#line 839 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 30:
-#line 154 "parser.y" // lalr1.cc:859
+#line 155 "parser.y" // lalr1.cc:859
     { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,yystack_[0].value.as< std::string > ())); }
-#line 844 "Parser.cpp" // lalr1.cc:859
+#line 845 "Parser.cpp" // lalr1.cc:859
     break;
 
 
-#line 848 "Parser.cpp" // lalr1.cc:859
+#line 849 "Parser.cpp" // lalr1.cc:859
             default:
               break;
             }
@@ -1251,10 +1252,10 @@ namespace QuantLib { namespace Scripting {
   const unsigned char
   Parser::yyrline_[] =
   {
-       0,    95,    95,    98,   101,   103,   105,   106,   107,   108,
-     109,   111,   113,   115,   117,   119,   121,   123,   125,   126,
-     127,   128,   130,   132,   134,   136,   138,   140,   145,   147,
-     154
+       0,    96,    96,    99,   102,   104,   106,   107,   108,   109,
+     110,   112,   114,   116,   118,   120,   122,   124,   126,   127,
+     128,   129,   131,   133,   135,   137,   139,   141,   146,   148,
+     155
   };
 
   // Print the state stack on the debug stream.
@@ -1289,8 +1290,8 @@ namespace QuantLib { namespace Scripting {
 
 #line 4 "parser.y" // lalr1.cc:1167
 } } // QuantLib::Scripting
-#line 1293 "Parser.cpp" // lalr1.cc:1167
-#line 156 "parser.y" // lalr1.cc:1168
+#line 1294 "Parser.cpp" // lalr1.cc:1167
+#line 157 "parser.y" // lalr1.cc:1168
 
 
 void QuantLib::Scripting::Parser::error (const location_type& l, const std::string& m) {

@@ -4,7 +4,7 @@
 # include <cstdlib>
 # include <string>
 # include "Parser.hpp"
-# include "FlexBisonDriver.hpp"
+# include "flexbisondriver.hpp"
 #define YY_DECL QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDriver& driver, yyscan_t yyscanner)
 
 

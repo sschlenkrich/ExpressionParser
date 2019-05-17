@@ -31,7 +31,8 @@ namespace QuantLib{
 %initial-action
 {
   // Initialize the initial location.
-  @$.begin.filename = @$.end.filename = &driver.text();
+  std::string text_variable = driver.text();
+  @$.begin.filename = @$.end.filename = &text_variable;
 };
 // %define parse.trace
 // %define parse.error verbose
@@ -40,8 +41,8 @@ namespace QuantLib{
 %code
 {
 // further .cpp includes
-#include "Expression.hpp"
-#include "FlexBisonDriver.hpp"
+#include "expression.hpp"
+#include "flexbisondriver.hpp"
 // tell Bison that the scanner exists as expected...
 QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDriver& driver, void* yyscanner);
 
