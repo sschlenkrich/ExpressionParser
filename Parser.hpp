@@ -310,6 +310,9 @@ namespace QuantLib { namespace Scripting {
       // "Max"
       // "Pay"
       // "Cache"
+      // "Exp"
+      // "Log"
+      // "Sqrt"
       char dummy2[sizeof(std::string)];
 };
 
@@ -358,7 +361,10 @@ namespace QuantLib { namespace Scripting {
         TOK_MAX = 279,
         TOK_PAY = 280,
         TOK_CACHE = 281,
-        TOK_UNARY = 282
+        TOK_EXPONENTIAL = 282,
+        TOK_LOGARITHM = 283,
+        TOK_SQUAREROOT = 284,
+        TOK_UNARY = 285
       };
     };
 
@@ -569,6 +575,18 @@ namespace QuantLib { namespace Scripting {
 
     static inline
     symbol_type
+    make_EXPONENTIAL (const std::string& v, const location_type& l);
+
+    static inline
+    symbol_type
+    make_LOGARITHM (const std::string& v, const location_type& l);
+
+    static inline
+    symbol_type
+    make_SQUAREROOT (const std::string& v, const location_type& l);
+
+    static inline
+    symbol_type
     make_UNARY (const location_type& l);
 
 
@@ -776,12 +794,12 @@ namespace QuantLib { namespace Scripting {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 246,     ///< Last index in yytable_.
+      yylast_ = 288,     ///< Last index in yytable_.
       yynnts_ = 6,  ///< Number of nonterminal symbols.
       yyfinal_ = 5, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 28  ///< Number of tokens.
+      yyntokens_ = 31  ///< Number of tokens.
     };
 
 
@@ -827,9 +845,9 @@ namespace QuantLib { namespace Scripting {
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27
+      25,    26,    27,    28,    29,    30
     };
-    const unsigned int user_token_number_max_ = 282;
+    const unsigned int user_token_number_max_ = 285;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -862,10 +880,10 @@ namespace QuantLib { namespace Scripting {
   {
       switch (other.type_get ())
     {
-      case 30: // assignment
-      case 31: // exp
-      case 32: // function
-      case 33: // funcname
+      case 33: // assignment
+      case 34: // exp
+      case 35: // function
+      case 36: // funcname
         value.copy< boost::shared_ptr<Expression> > (other.value);
         break;
 
@@ -877,6 +895,9 @@ namespace QuantLib { namespace Scripting {
       case 24: // "Max"
       case 25: // "Pay"
       case 26: // "Cache"
+      case 27: // "Exp"
+      case 28: // "Log"
+      case 29: // "Sqrt"
         value.copy< std::string > (other.value);
         break;
 
@@ -897,10 +918,10 @@ namespace QuantLib { namespace Scripting {
     (void) v;
       switch (this->type_get ())
     {
-      case 30: // assignment
-      case 31: // exp
-      case 32: // function
-      case 33: // funcname
+      case 33: // assignment
+      case 34: // exp
+      case 35: // function
+      case 36: // funcname
         value.copy< boost::shared_ptr<Expression> > (v);
         break;
 
@@ -912,6 +933,9 @@ namespace QuantLib { namespace Scripting {
       case 24: // "Max"
       case 25: // "Pay"
       case 26: // "Cache"
+      case 27: // "Exp"
+      case 28: // "Log"
+      case 29: // "Sqrt"
         value.copy< std::string > (v);
         break;
 
@@ -970,10 +994,10 @@ namespace QuantLib { namespace Scripting {
     // Type destructor.
     switch (yytype)
     {
-      case 30: // assignment
-      case 31: // exp
-      case 32: // function
-      case 33: // funcname
+      case 33: // assignment
+      case 34: // exp
+      case 35: // function
+      case 36: // funcname
         value.template destroy< boost::shared_ptr<Expression> > ();
         break;
 
@@ -985,6 +1009,9 @@ namespace QuantLib { namespace Scripting {
       case 24: // "Max"
       case 25: // "Pay"
       case 26: // "Cache"
+      case 27: // "Exp"
+      case 28: // "Log"
+      case 29: // "Sqrt"
         value.template destroy< std::string > ();
         break;
 
@@ -1011,10 +1038,10 @@ namespace QuantLib { namespace Scripting {
     super_type::move(s);
       switch (this->type_get ())
     {
-      case 30: // assignment
-      case 31: // exp
-      case 32: // function
-      case 33: // funcname
+      case 33: // assignment
+      case 34: // exp
+      case 35: // function
+      case 36: // funcname
         value.move< boost::shared_ptr<Expression> > (s.value);
         break;
 
@@ -1026,6 +1053,9 @@ namespace QuantLib { namespace Scripting {
       case 24: // "Max"
       case 25: // "Pay"
       case 26: // "Cache"
+      case 27: // "Exp"
+      case 28: // "Log"
+      case 29: // "Sqrt"
         value.move< std::string > (s.value);
         break;
 
@@ -1086,7 +1116,8 @@ namespace QuantLib { namespace Scripting {
     {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281,   282
+     275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
+     285
     };
     return static_cast<token_type> (yytoken_number_[type]);
   }
@@ -1242,6 +1273,24 @@ namespace QuantLib { namespace Scripting {
   }
 
   Parser::symbol_type
+  Parser::make_EXPONENTIAL (const std::string& v, const location_type& l)
+  {
+    return symbol_type (token::TOK_EXPONENTIAL, v, l);
+  }
+
+  Parser::symbol_type
+  Parser::make_LOGARITHM (const std::string& v, const location_type& l)
+  {
+    return symbol_type (token::TOK_LOGARITHM, v, l);
+  }
+
+  Parser::symbol_type
+  Parser::make_SQUAREROOT (const std::string& v, const location_type& l)
+  {
+    return symbol_type (token::TOK_SQUAREROOT, v, l);
+  }
+
+  Parser::symbol_type
   Parser::make_UNARY (const location_type& l)
   {
     return symbol_type (token::TOK_UNARY, l);
@@ -1250,7 +1299,7 @@ namespace QuantLib { namespace Scripting {
 
 #line 4 "parser.y" // lalr1.cc:377
 } } // QuantLib::Scripting
-#line 1254 "Parser.hpp" // lalr1.cc:377
+#line 1303 "Parser.hpp" // lalr1.cc:377
 
 
 

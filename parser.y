@@ -75,6 +75,9 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
 %token <std::string> MAX         "Max"
 %token <std::string> PAY         "Pay"
 %token <std::string> CACHE       "Cache"
+%token <std::string> EXPONENTIAL "Exp"
+%token <std::string> LOGARITHM   "Log"
+%token <std::string> SQUAREROOT  "Sqrt"
 
 %type  <boost::shared_ptr<Expression>> exp
 %type  <boost::shared_ptr<Expression>> assignment
@@ -138,6 +141,12 @@ exp:
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAY_WITHDATE,$5,$3));  }
 | CACHE "(" exp ")"
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::CACHE,"",$3));  }
+| EXPONENTIAL "(" exp ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::EXPONENTIAL,"",$3));  }
+| LOGARITHM "(" exp ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGARITHM,"",$3));  }
+| SQUAREROOT "(" exp ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::SQUAREROOT,"",$3));  }
 | function      { $$ = $1; }
 ;
 

@@ -74,6 +74,10 @@ namespace QuantLib {
 			case Expression::CACHE		 : res = "CACHE";       break;
             case Expression::PAYOFFAT	 : res = "PAYOFFAT";    break;
 			case Expression::PAYOFFAT_WITHDATE: res = "PAYOFFAT_WITHDATE"; break;
+			case Expression::EXPONENTIAL : res = "EXPONENTIAL"; break;
+			case Expression::LOGARITHM   : res = "LOGARITHM";   break;
+			case Expression::SQUAREROOT  : res = "SQUAREROOT";  break;
+
 			case Expression::UNKNOWNTYPE : res = "UNKNOWNTYPE"; break;
             default:
 				res = "Error! Unhandled Type";
