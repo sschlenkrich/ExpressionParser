@@ -154,6 +154,10 @@ exp:
 function:
   funcname "(" NUMBER ")"
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); }
+| funcname "(" "+" NUMBER ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4)); }
+| funcname "(" "-" NUMBER ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4,"-")); }
 | funcname "(" DATE ")"
                 { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,$3,$1)); }
 ;
