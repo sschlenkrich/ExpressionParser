@@ -17,7 +17,7 @@ Copyright (C) 2017, Sebastian Schlenkrich
 
 #include <string>
 #include <map>
-#include <boost/shared_ptr.hpp>
+#include <ql/shared_ptr.hpp>
 
 #pragma warning( push )
 #pragma warning( disable : 4146)
@@ -36,7 +36,7 @@ namespace QuantLib {
 			// The text to be parsed
 			std::string text_;
 			// The result of the parsing algorithm is an abstract syntax tree (AST)
-			boost::shared_ptr<Expression> expressionTree_;
+			ext::shared_ptr<Expression> expressionTree_;
 			// encapsulate the state for a reentrant scanner
 			// this is initialised in scan_begin()
 			void *yyscanner_;
@@ -62,14 +62,14 @@ namespace QuantLib {
 			void scan_begin();
 			void scan_end();
 			// set the result value during parsing
-			void setExpressionTree(const boost::shared_ptr<Expression> expressionTree) { expressionTree_ = expressionTree; }
+			void setExpressionTree(const ext::shared_ptr<Expression> expressionTree) { expressionTree_ = expressionTree; }
 			// Error handling.
 			void error(const location& l, const std::string& m);
 			void error(const std::string& m);
 			// inspector
 			std::string text() { return text_; }
 			std::string errorMsg() { return errorMsg_; }
-			boost::shared_ptr<Expression> expressionTree() { return expressionTree_; }
+			ext::shared_ptr<Expression> expressionTree() { return expressionTree_; }
 			int returnValue() { return returnValue_; }
 			// return a reference to allow acccess to methods
 			location& loc() { return loc_; }

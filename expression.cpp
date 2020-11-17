@@ -23,9 +23,9 @@ namespace QuantLib {
         Expression::Expression(
             const Type                          type,
             const std::string                   leaf,
-            const boost::shared_ptr<Expression> first,
-            const boost::shared_ptr<Expression> second,
-            const boost::shared_ptr<Expression> third)
+            const ext::shared_ptr<Expression>   first,
+            const ext::shared_ptr<Expression>   second,
+            const ext::shared_ptr<Expression>   third)
             : type_(type) {
 			if (leaf.compare("") != 0) leafs_.push_back(leaf);
             if (first) childs_.push_back(first);
@@ -35,7 +35,7 @@ namespace QuantLib {
 
 		Expression::Expression(
 			const Type                          type,
-			const boost::shared_ptr<Expression> child,
+			const ext::shared_ptr<Expression>   child,
 			const std::string                   first,
 			const std::string                   second,
 			const std::string                   third,

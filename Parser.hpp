@@ -43,7 +43,7 @@
 #line 14 "parser.y" // lalr1.cc:377
 
 #include <string>
-#include <boost/shared_ptr.hpp>
+#include <ql/shared_ptr.hpp>
 namespace QuantLib{
     namespace Scripting {
         class Expression;
@@ -300,7 +300,7 @@ namespace QuantLib { namespace Scripting {
       // exp
       // function
       // funcname
-      char dummy1[sizeof(boost::shared_ptr<Expression>)];
+      char dummy1[sizeof(ext::shared_ptr<Expression>)];
 
       // "identifier"
       // "number"
@@ -396,7 +396,7 @@ namespace QuantLib { namespace Scripting {
 
   basic_symbol (typename Base::kind_type t, const location_type& l);
 
-  basic_symbol (typename Base::kind_type t, const boost::shared_ptr<Expression> v, const location_type& l);
+  basic_symbol (typename Base::kind_type t, const ext::shared_ptr<Expression> v, const location_type& l);
 
   basic_symbol (typename Base::kind_type t, const std::string v, const location_type& l);
 
@@ -866,7 +866,7 @@ namespace QuantLib { namespace Scripting {
       case 31: // exp
       case 32: // function
       case 33: // funcname
-        value.copy< boost::shared_ptr<Expression> > (other.value);
+        value.copy< ext::shared_ptr<Expression> > (other.value);
         break;
 
       case 19: // "identifier"
@@ -901,7 +901,7 @@ namespace QuantLib { namespace Scripting {
       case 31: // exp
       case 32: // function
       case 33: // funcname
-        value.copy< boost::shared_ptr<Expression> > (v);
+        value.copy< ext::shared_ptr<Expression> > (v);
         break;
 
       case 19: // "identifier"
@@ -931,7 +931,7 @@ namespace QuantLib { namespace Scripting {
   {}
 
   template <typename Base>
-  Parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const boost::shared_ptr<Expression> v, const location_type& l)
+  Parser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const ext::shared_ptr<Expression> v, const location_type& l)
     : Base (t)
     , value (v)
     , location (l)
@@ -974,7 +974,7 @@ namespace QuantLib { namespace Scripting {
       case 31: // exp
       case 32: // function
       case 33: // funcname
-        value.template destroy< boost::shared_ptr<Expression> > ();
+        value.template destroy< ext::shared_ptr<Expression> > ();
         break;
 
       case 19: // "identifier"
@@ -1015,7 +1015,7 @@ namespace QuantLib { namespace Scripting {
       case 31: // exp
       case 32: // function
       case 33: // funcname
-        value.move< boost::shared_ptr<Expression> > (s.value);
+        value.move< ext::shared_ptr<Expression> > (s.value);
         break;
 
       case 19: // "identifier"

@@ -18,7 +18,7 @@ Copyright (C) 2017, Sebastian Schlenkrich
 #include <string>
 #include <vector>
 
-#include <boost/shared_ptr.hpp>
+#include <ql/shared_ptr.hpp>
 
 namespace QuantLib {
 
@@ -50,12 +50,12 @@ namespace QuantLib {
 			};
 			Expression(const Type                   type,
 				const std::string                   leaf,
-				const boost::shared_ptr<Expression> first =  boost::shared_ptr<Expression>(),
-				const boost::shared_ptr<Expression> second = boost::shared_ptr<Expression>(),
-				const boost::shared_ptr<Expression> third =  boost::shared_ptr<Expression>());
+				const ext::shared_ptr<Expression> first =  ext::shared_ptr<Expression>(),
+				const ext::shared_ptr<Expression> second = ext::shared_ptr<Expression>(),
+				const ext::shared_ptr<Expression> third =  ext::shared_ptr<Expression>());
 
 			Expression(const Type                   type,
-				const boost::shared_ptr<Expression> child,
+				const ext::shared_ptr<Expression> child,
 				const std::string                   first  = std::string(),
 				const std::string                   second = std::string(),
 				const std::string                   third  = std::string(),
@@ -68,11 +68,11 @@ namespace QuantLib {
 			// inspectors
 			inline Type type()                                                  { return type_;   }
 			std::vector< std::string > leafs()                                  { return leafs_;  }
-			inline const std::vector< boost::shared_ptr<Expression> >& childs() { return childs_; };
+			inline const std::vector< ext::shared_ptr<Expression> >& childs() { return childs_; };
 		private:
 			Type type_;
 			std::vector< std::string > leafs_;
-			std::vector< boost::shared_ptr<Expression> > childs_;
+			std::vector< ext::shared_ptr<Expression> > childs_;
 
 		};
 	}

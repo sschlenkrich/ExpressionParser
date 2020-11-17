@@ -13,7 +13,7 @@
 %code requires
 {
 #include <string>
-#include <boost/shared_ptr.hpp>
+#include <ql/shared_ptr.hpp>
 namespace QuantLib{
     namespace Scripting {
         class Expression;
@@ -75,10 +75,10 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
 %token <std::string> PAY         "Pay"
 %token <std::string> CACHE       "Cache"
 
-%type  <boost::shared_ptr<Expression>> exp
-%type  <boost::shared_ptr<Expression>> assignment
-%type  <boost::shared_ptr<Expression>> function
-%type  <boost::shared_ptr<Expression>> funcname
+%type  <ext::shared_ptr<Expression>> exp
+%type  <ext::shared_ptr<Expression>> assignment
+%type  <ext::shared_ptr<Expression>> function
+%type  <ext::shared_ptr<Expression>> funcname
 
 
 %printer { yyoutput << $$; } <*>;
@@ -95,63 +95,63 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
 unit: assignment  { driver.setExpressionTree($1); };
 
 assignment:
-  "identifier" "=" exp { $$ = boost::shared_ptr<Expression>(new Expression(Expression::ASSIGNMENT,$1,$3)); };
+  "identifier" "=" exp { $$ = ext::shared_ptr<Expression>(new Expression(Expression::ASSIGNMENT,$1,$3)); };
 
 exp:
   "+" exp %prec UNARY
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::UNARYPLUS,"",$2)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::UNARYPLUS,"",$2)); }
 | "-" exp %prec UNARY
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::UNARYMINUS,"",$2)); }
-| exp "+" exp   { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PLUS,"",$1,$3)); }
-| exp "-" exp   { $$ = boost::shared_ptr<Expression>(new Expression(Expression::MINUS,"",$1,$3)); }
-| exp "*" exp   { $$ = boost::shared_ptr<Expression>(new Expression(Expression::MULT,"",$1,$3)); }
-| exp "/" exp   { $$ = boost::shared_ptr<Expression>(new Expression(Expression::DIVISION,"",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::UNARYMINUS,"",$2)); }
+| exp "+" exp   { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PLUS,"",$1,$3)); }
+| exp "-" exp   { $$ = ext::shared_ptr<Expression>(new Expression(Expression::MINUS,"",$1,$3)); }
+| exp "*" exp   { $$ = ext::shared_ptr<Expression>(new Expression(Expression::MULT,"",$1,$3)); }
+| exp "/" exp   { $$ = ext::shared_ptr<Expression>(new Expression(Expression::DIVISION,"",$1,$3)); }
 | exp "==" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"==",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"==",$1,$3)); }
 | exp "!=" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"!=",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"!=",$1,$3)); }
 | exp "<=" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<=",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<=",$1,$3)); }
 | exp ">=" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">=",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">=",$1,$3)); }
 | exp "<" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"<",$1,$3)); }
 | exp ">" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,">",$1,$3)); }
 | exp "&&" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"&&",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"&&",$1,$3)); }
 | exp "||" exp
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"||",$1,$3)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGICAL,"||",$1,$3)); }
 | "(" exp ")"   { $$ = $2; }
-| IDENTIFIER    { $$ = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,$1)); }
-| NUMBER        { $$ = boost::shared_ptr<Expression>(new Expression(Expression::NUMBER,$1)); }
+| IDENTIFIER    { $$ = ext::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,$1)); }
+| NUMBER        { $$ = ext::shared_ptr<Expression>(new Expression(Expression::NUMBER,$1)); }
 | IFTHENELSE "(" exp "," exp "," exp ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::IFTHENELSE,"",$3,$5,$7));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::IFTHENELSE,"",$3,$5,$7));  }
 | MIN "(" exp "," exp ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::MIN,"",$3,$5));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::MIN,"",$3,$5));  }
 | MAX "(" exp "," exp ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::MAX,"",$3,$5));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::MAX,"",$3,$5));  }
 | PAY "(" exp "," NUMBER ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAY,$5,$3));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAY,$5,$3));  }
 | PAY "(" exp "," DATE ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAY_WITHDATE,$5,$3));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAY_WITHDATE,$5,$3));  }
 | CACHE "(" exp ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::CACHE,"",$3));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::CACHE,"",$3));  }
 | function      { $$ = $1; }
 ;
 
 /* we handle this case separately to avoid conflicts with pre-defined functions */
 function:
   funcname "(" NUMBER ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); }
 | funcname "(" DATE ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,$3,$1)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,$3,$1)); }
 ;
 
 /* ideally we would want to allow any expression as function name */
 /* but this seems to cause conflicts with other rules             */
 funcname:
-  IDENTIFIER { $$ = boost::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,$1)); } ;
+  IDENTIFIER { $$ = ext::shared_ptr<Expression>(new Expression(Expression::IDENTIFIER,$1)); } ;
 
 %%
 
