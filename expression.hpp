@@ -46,6 +46,9 @@ namespace QuantLib {
 				CACHE,
 				PAYOFFAT,
 				PAYOFFAT_WITHDATE,
+				EXPONENTIAL,
+				LOGARITHM,
+				SQUAREROOT,
 				UNKNOWNTYPE
 			};
 			Expression(const Type                   type,

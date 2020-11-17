@@ -4,7 +4,7 @@
 # include <cstdlib>
 # include <string>
 # include "Parser.hpp"
-# include "FlexBisonDriver.hpp"
+# include "flexbisondriver.hpp"
 #define YY_DECL QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDriver& driver, yyscan_t yyscanner)
 
 
@@ -69,6 +69,10 @@ date    [0-9]{2}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[0-9]{4}
 "Max"            return QuantLib::Scripting::Parser::make_MAX(yytext,driver.loc());       
 "Pay"            return QuantLib::Scripting::Parser::make_PAY(yytext,driver.loc());       
 "Cache"          return QuantLib::Scripting::Parser::make_CACHE(yytext,driver.loc());     
+
+"Exp"            return QuantLib::Scripting::Parser::make_EXPONENTIAL(yytext,driver.loc());     
+"Log"            return QuantLib::Scripting::Parser::make_LOGARITHM(yytext,driver.loc());     
+"Sqrt"           return QuantLib::Scripting::Parser::make_SQUAREROOT(yytext,driver.loc());     
 
 {double}         return QuantLib::Scripting::Parser::make_NUMBER(yytext, driver.loc());
 {id}             return QuantLib::Scripting::Parser::make_IDENTIFIER(yytext, driver.loc());

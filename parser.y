@@ -31,7 +31,8 @@ namespace QuantLib{
 %initial-action
 {
   // Initialize the initial location.
-  @$.begin.filename = @$.end.filename = &driver.text();
+  std::string text_variable = driver.text();
+  @$.begin.filename = @$.end.filename = &text_variable;
 };
 // %define parse.trace
 // %define parse.error verbose
@@ -40,8 +41,8 @@ namespace QuantLib{
 %code
 {
 // further .cpp includes
-#include "Expression.hpp"
-#include "FlexBisonDriver.hpp"
+#include "expression.hpp"
+#include "flexbisondriver.hpp"
 // tell Bison that the scanner exists as expected...
 QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDriver& driver, void* yyscanner);
 
@@ -74,6 +75,9 @@ QuantLib::Scripting::Parser::symbol_type yylex (QuantLib::Scripting::FlexBisonDr
 %token <std::string> MAX         "Max"
 %token <std::string> PAY         "Pay"
 %token <std::string> CACHE       "Cache"
+%token <std::string> EXPONENTIAL "Exp"
+%token <std::string> LOGARITHM   "Log"
+%token <std::string> SQUAREROOT  "Sqrt"
 
 %type  <ext::shared_ptr<Expression>> exp
 %type  <ext::shared_ptr<Expression>> assignment
@@ -137,6 +141,12 @@ exp:
                 { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAY_WITHDATE,$5,$3));  }
 | CACHE "(" exp ")"
                 { $$ = ext::shared_ptr<Expression>(new Expression(Expression::CACHE,"",$3));  }
+| EXPONENTIAL "(" exp ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::EXPONENTIAL,"",$3));  }
+| LOGARITHM "(" exp ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGARITHM,"",$3));  }
+| SQUAREROOT "(" exp ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::SQUAREROOT,"",$3));  }
 | function      { $$ = $1; }
 ;
 
@@ -144,6 +154,10 @@ exp:
 function:
   funcname "(" NUMBER ")"
                 { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); }
+| funcname "(" "+" NUMBER ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4)); }
+| funcname "(" "-" NUMBER ")"
+                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4,"-")); }
 | funcname "(" DATE ")"
                 { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,$3,$1)); }
 ;
