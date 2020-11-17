@@ -852,19 +852,19 @@ namespace QuantLib { namespace Scripting {
 
   case 27:
 #line 145 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::EXPONENTIAL,"",yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
+    { yylhs.value.as< ext::shared_ptr<Expression> > () = ext::shared_ptr<Expression>(new Expression(Expression::EXPONENTIAL,"",yystack_[1].value.as< ext::shared_ptr<Expression> > ()));  }
 #line 857 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 28:
 #line 147 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::LOGARITHM,"",yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
+    { yylhs.value.as< ext::shared_ptr<Expression> > () = ext::shared_ptr<Expression>(new Expression(Expression::LOGARITHM,"",yystack_[1].value.as< ext::shared_ptr<Expression> > ()));  }
 #line 863 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 29:
 #line 149 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::SQUAREROOT,"",yystack_[1].value.as< boost::shared_ptr<Expression> > ()));  }
+    { yylhs.value.as< ext::shared_ptr<Expression> > () = ext::shared_ptr<Expression>(new Expression(Expression::SQUAREROOT,"",yystack_[1].value.as< ext::shared_ptr<Expression> > ()));  }
 #line 869 "Parser.cpp" // lalr1.cc:859
     break;
 
@@ -882,13 +882,13 @@ namespace QuantLib { namespace Scripting {
 
   case 32:
 #line 158 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,yystack_[4].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< std::string > ())); }
+    { yylhs.value.as< ext::shared_ptr<Expression> > () = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,yystack_[4].value.as< ext::shared_ptr<Expression> > (),yystack_[1].value.as< std::string > ())); }
 #line 887 "Parser.cpp" // lalr1.cc:859
     break;
 
   case 33:
 #line 160 "parser.y" // lalr1.cc:859
-    { yylhs.value.as< boost::shared_ptr<Expression> > () = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,yystack_[4].value.as< boost::shared_ptr<Expression> > (),yystack_[1].value.as< std::string > (),"-")); }
+    { yylhs.value.as< ext::shared_ptr<Expression> > () = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,yystack_[4].value.as< ext::shared_ptr<Expression> > (),yystack_[1].value.as< std::string > (),"-")); }
 #line 893 "Parser.cpp" // lalr1.cc:859
     break;
 

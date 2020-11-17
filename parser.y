@@ -142,11 +142,11 @@ exp:
 | CACHE "(" exp ")"
                 { $$ = ext::shared_ptr<Expression>(new Expression(Expression::CACHE,"",$3));  }
 | EXPONENTIAL "(" exp ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::EXPONENTIAL,"",$3));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::EXPONENTIAL,"",$3));  }
 | LOGARITHM "(" exp ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::LOGARITHM,"",$3));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::LOGARITHM,"",$3));  }
 | SQUAREROOT "(" exp ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::SQUAREROOT,"",$3));  }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::SQUAREROOT,"",$3));  }
 | function      { $$ = $1; }
 ;
 
@@ -155,9 +155,9 @@ function:
   funcname "(" NUMBER ")"
                 { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$3,$1)); }
 | funcname "(" "+" NUMBER ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4)); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4)); }
 | funcname "(" "-" NUMBER ")"
-                { $$ = boost::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4,"-")); }
+                { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT,$1,$4,"-")); }
 | funcname "(" DATE ")"
                 { $$ = ext::shared_ptr<Expression>(new Expression(Expression::PAYOFFAT_WITHDATE,$3,$1)); }
 ;
