@@ -56,4 +56,5 @@ ExpressionParser/Release/
 .deps/
 Makefile
 Makefile.in
+unity.cpp
 
