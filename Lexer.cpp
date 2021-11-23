@@ -620,7 +620,11 @@ static const flex_int16_t yy_rule_linenum[31] =
  * The user has a chance to override it with an option.
  */
 /* %if-c-only */
+#if defined _WIN32 || defined _WIN64
+#include <io.h>
+#elif __linux__
 #include <unistd.h>
+#endif
 /* %endif */
 /* %if-c++-only */
 /* %endif */
