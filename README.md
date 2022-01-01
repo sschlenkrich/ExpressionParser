@@ -1,3 +1,5 @@
+--- THIS REPOSITORY IS ARCHIVED; ExpressionParser IS INTEGRATED INTO QuantLib REPOSITORY ---
+
 # ExpressionParser
 A parser for expressions and assignments based on Flex and Bison
 
